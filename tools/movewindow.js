@@ -22,7 +22,7 @@ class archMoveWindow {
         ]
       };
     }
-    moveby(args) {
+    moveto(args) {
       window.moveBy(args.ONE,args.TWO)
     }
   }
