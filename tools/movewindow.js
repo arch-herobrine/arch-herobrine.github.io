@@ -5,7 +5,7 @@ class archMoveWindow {
         name: 'Move Window',
         blocks: [
           {
-            opcode: 'moveby',
+            opcode: 'moveto',
             blockType: Scratch.BlockType.COMMAND,
             text: 'window.moveBy([ONE],[TWO])',
             arguments: {
