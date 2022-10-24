@@ -5,9 +5,9 @@ class archMoveWindow {
         name: 'Move Window',
         blocks: [
           {
-            opcode: 'moveto',
+            opcode: 'moveby',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'Moveto([ONE],[TWO])',
+            text: 'window.moveBy([ONE],[TWO])',
             arguments: {
               ONE: {
                 type: Scratch.ArgumentType.NUMBER,
@@ -22,8 +22,8 @@ class archMoveWindow {
         ]
       };
     }
-    moveto(args) {
-      moveTo(args.ONE,args.TWO)
+    moveby(args) {
+      window.moveBy(args.ONE,args.TWO)
     }
   }
   Scratch.extensions.register(new archMoveWindow());
