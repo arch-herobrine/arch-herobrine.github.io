@@ -18,15 +18,29 @@ class archMoveWindow {
               defaultValue: 0
             }
           }
+        },
+        {
+          opcode:"moveby",
+          blockType:Scratch.BlockType.COMMAND,
+          arguments:{
+            X:{
+              type:Scratch.ArgumentType.NUMBER,
+              defaultValue:0
+            },
+            Y:{
+              type:Scratch.ArgumentType.NUMBER,
+              defaultValue:0
+            }
+          }
         }
       ]
     };
   }
   moveto(args) {
-    (async function () {
-      await setTimeout(function(){window.moveBy(args.ONE, args.TWO)},33)
-    }
-    )()
+    window.moveBy(args.ONE, args.TWO)
+  }
+  moveby(args){
+    window.moveTo(args.X,args.Y)
   }
 }
 Scratch.extensions.register(new archMoveWindow());
