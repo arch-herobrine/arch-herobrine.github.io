@@ -7,7 +7,7 @@ class archMoveWindow {
         {
           opcode: 'moveto',
           blockType: Scratch.BlockType.COMMAND,
-          text: 'window.moveBy([ONE],[TWO])',
+          text: 'ウィンドウを([ONE],[TWO])づつ動かす',
           arguments: {
             ONE: {
               type: Scratch.ArgumentType.NUMBER,
@@ -22,7 +22,7 @@ class archMoveWindow {
         {
           opcode: "moveby",
           blockType: Scratch.BlockType.COMMAND,
-          text: 'window.moveTo([X],[Y])',
+          text: 'ウィンドウを([X],[Y])に動かす',
           arguments: {
             X: {
               type: Scratch.ArgumentType.NUMBER,
@@ -38,19 +38,34 @@ class archMoveWindow {
           opcode: "seto",
           blockType: Scratch.BlockType.COMMAND,
           text: '中央に配置'
+        },
+        {
+          opcode: "scrrenx",
+          blockType: Scratch.BlockType.REPORTER,
+          text: 'ウィンドウのx座標'
+        },
+        {
+          opcode: "scrreny",
+          blockType: Scratch.BlockType.REPORTER,
+          text: 'ウィンドウのy座標'
         }
-
       ]
-    };
+    }
   }
   moveto(args) {
-    window.moveBy(args.ONE, args.TWO)
+    window.moveBy(args.ONE, 0-(args.TWO))
   }
   moveby(args) {
-    window.moveTo(args.X, args.Y)
+    window.moveTo(args.X, (0-args.Y))
   }
   seto(){
     window.moveTo((screen.width - document.documentElement.clientWidth) / 2,(screen.height - document.documentElement.clientHeight) / 2)
+  }
+  scrrenx(){
+    return (screen.width - document.documentElement.clientWidth) / 2
+  }
+  screeny(){
+    return (screen.height - document.documentElement.clientHeight) / 2
   }
 }
 Scratch.extensions.register(new archMoveWindow());
