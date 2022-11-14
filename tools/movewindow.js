@@ -1,8 +1,8 @@
 class archMoveWindow {
   getInfo() {
     return {
-      id: 'archMoveWindow', // change this if you make an actual extension!
-      name: 'Move Window by arch-herobrine',
+      id: 'archMoveWindow',
+      name: 'Control Window by arch-herobrine',
       blocks: [
         {
           opcode: 'moveto',
@@ -42,12 +42,12 @@ class archMoveWindow {
         {
           opcode: "scrrenx",
           blockType: Scratch.BlockType.REPORTER,
-          text: 'ウィンドウのx座標'
+          text: 'ウィンドウのx座標(動作未確認)'
         },
         {
           opcode: "scrreny",
           blockType: Scratch.BlockType.REPORTER,
-          text: 'ウィンドウのy座標'
+          text: 'ウィンドウのy座標(動作未確認)'
         }
       ]
     }
@@ -63,7 +63,6 @@ class archMoveWindow {
   }
   scrrenx(){
     return (window.screenX+(document.documentElement.clientWidth/2))-((screen.width - document.documentElement.clientWidth) / 2)
-    
   }
   screeny(){
     return (screen.height-(window.screenY+(document.documentElement.clientHeight/2)))-((screen.height - document.documentElement.clientHeight) / 2)
