@@ -22,6 +22,7 @@ class archMoveWindow {
         {
           opcode:"moveby",
           blockType:Scratch.BlockType.COMMAND,
+          text: 'window.moveTo([X],[Y])',
           arguments:{
             X:{
               type:Scratch.ArgumentType.NUMBER,
