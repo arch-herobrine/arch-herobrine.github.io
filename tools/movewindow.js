@@ -56,7 +56,7 @@ class archMoveWindow {
     window.moveBy(args.ONE, 0-(args.TWO))
   }
   moveby(args) {
-    window.moveTo(args.X, (0-args.Y))
+    window.moveTo(((screen.width - document.documentElement.clientWidth) / 2)+args.X, ((screen.height - document.documentElement.clientHeight) / 2)+(0-args.Y))
   }
   seto(){
     window.moveTo((screen.width - document.documentElement.clientWidth) / 2,(screen.height - document.documentElement.clientHeight) / 2)
