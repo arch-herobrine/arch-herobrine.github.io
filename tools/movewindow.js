@@ -20,28 +20,37 @@ class archMoveWindow {
           }
         },
         {
-          opcode:"moveby",
-          blockType:Scratch.BlockType.COMMAND,
+          opcode: "moveby",
+          blockType: Scratch.BlockType.COMMAND,
           text: 'window.moveTo([X],[Y])',
-          arguments:{
-            X:{
-              type:Scratch.ArgumentType.NUMBER,
-              defaultValue:0
+          arguments: {
+            X: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 0
             },
-            Y:{
-              type:Scratch.ArgumentType.NUMBER,
-              defaultValue:0
+            Y: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 0
             }
           }
+        },
+        {
+          opcode: "seto",
+          blockType: Scratch.BlockType.COMMAND,
+          text: '中央に配置'
         }
+
       ]
     };
   }
   moveto(args) {
     window.moveBy(args.ONE, args.TWO)
   }
-  moveby(args){
-    window.moveTo(args.X,args.Y)
+  moveby(args) {
+    window.moveTo(args.X, args.Y)
+  }
+  seto(){
+    window.moveTo((screen.width - document.documentElement.clientWidth) / 2,(screen.height - document.documentElement.clientHeight) / 2)
   }
 }
 Scratch.extensions.register(new archMoveWindow());
