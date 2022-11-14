@@ -24,8 +24,7 @@ class archMoveWindow {
   }
   moveto(args) {
     (async function () {
-      window.moveBy(args.ONE, args.TWO)
-      await setTimeout(void (0), 33)
+      await setTimeout(function(){window.moveBy(args.ONE, args.TWO)},33)
     }
     )()
   }
