@@ -1,3 +1,13 @@
 <script>
-    window.open("tests/followmousewindow.html","subwin","width=320,height=240,left=100,top=50");
+    function winCenter() {
+
+        //別窓の左と上の余白を求める
+        var w = (screen.width - 480) / 2;
+        var h = (screen.height - 360) / 2;
+
+
+        //オプションパラメーターleftとtopに余白の値を指定
+        window.open("tests/followmousewindow.html", "", "width=480,height=360"
+            + ",left=" + w + ",top=" + h);
+    }
 </script>
