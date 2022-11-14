@@ -62,10 +62,11 @@ class archMoveWindow {
     window.moveTo((screen.width - document.documentElement.clientWidth) / 2,(screen.height - document.documentElement.clientHeight) / 2)
   }
   scrrenx(){
-    return (screen.width - document.documentElement.clientWidth) / 2
+    return (window.screenX+(document.documentElement.clientWidth/2))-((screen.width - document.documentElement.clientWidth) / 2)
+    
   }
   screeny(){
-    return (screen.height - document.documentElement.clientHeight) / 2
+    return (screen.height-(window.screenY+(document.documentElement.clientHeight/2)))-((screen.height - document.documentElement.clientHeight) / 2)
   }
 }
 Scratch.extensions.register(new archMoveWindow());
