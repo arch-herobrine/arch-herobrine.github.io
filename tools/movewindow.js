@@ -2,7 +2,7 @@ class archMoveWindow {
   getInfo() {
     return {
       id: 'archMoveWindow', // change this if you make an actual extension!
-      name: 'Move Window',
+      name: 'Move Window by arch-herobrine',
       blocks: [
         {
           opcode: 'moveto',
