@@ -24,6 +24,7 @@ class archMoveWindow {
     }
     moveto(args) {
       window.moveBy(args.ONE,args.TWO)
+      setTimeout(void(0),33)
     }
   }
   Scratch.extensions.register(new archMoveWindow());
