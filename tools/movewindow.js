@@ -38,16 +38,6 @@ class archMoveWindow {
           opcode: "seto",
           blockType: Scratch.BlockType.COMMAND,
           text: '中央に配置'
-        },
-        {
-          opcode: "scrrenx",
-          blockType: Scratch.BlockType.REPORTER,
-          text: 'ウィンドウのx座標(動作未確認)'
-        },
-        {
-          opcode: "scrreny",
-          blockType: Scratch.BlockType.REPORTER,
-          text: 'ウィンドウのy座標(動作未確認)'
         }
       ]
     }
@@ -60,12 +50,6 @@ class archMoveWindow {
   }
   seto(){
     window.moveTo((screen.width - document.documentElement.clientWidth) / 2,(screen.height - document.documentElement.clientHeight) / 2)
-  }
-  scrrenx(){
-    return (window.screenX+(document.documentElement.clientWidth/2))-((screen.width - document.documentElement.clientWidth) / 2)
-  }
-  screeny(){
-    return (screen.height-(window.screenY+(document.documentElement.clientHeight/2)))-((screen.height - document.documentElement.clientHeight) / 2)
   }
 }
 Scratch.extensions.register(new archMoveWindow());
