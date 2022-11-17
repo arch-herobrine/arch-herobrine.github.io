@@ -81,11 +81,11 @@ class archMoveWindow {
   seto(){
     window.moveTo((screen.width - document.documentElement.clientWidth) / 2,(screen.height - document.documentElement.clientHeight) / 2)
   }
-  resizeby(a){
-    window.resizeBy(a.W, a.H)
+  resizeby(args){
+    window.resizeBy(args.W, args.H)
   }
-  resizeto(a){
-    window.resizeTo(a.W, a.H)
+  resizeto(args){
+    window.resizeTo(args.W, args.H)
   }
   
 }
