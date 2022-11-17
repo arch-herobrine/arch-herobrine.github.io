@@ -38,6 +38,36 @@ class archMoveWindow {
           opcode: "seto",
           blockType: Scratch.BlockType.COMMAND,
           text: '中央に配置'
+        },
+        {
+          opcode: "resizeby",
+          blockType: Scratch.BlockType.COMMAND,
+          text: 'ウィンドウの横の幅を[W]pxづつ、縦の幅を[H]pxづつ変える',
+          arguments: {
+            W: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 0
+            },
+            H: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 0
+            }
+          }
+        },
+        {
+          opcode: "resizeto",
+          blockType: Scratch.BlockType.COMMAND,
+          text: 'ウィンドウの横の幅を[W]px、縦の幅を[H]pxにする',
+          arguments: {
+            W: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 480
+            },
+            H: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 360
+            }
+          }
         }
       ]
     }
@@ -46,10 +76,17 @@ class archMoveWindow {
     window.moveBy(args.ONE, 0-(args.TWO))
   }
   moveby(args) {
-    window.moveTo(((screen.width - document.documentElement.clientWidth) / 2)+args.X, ((screen.height - document.documentElement.clientHeight) / 2)+(0-args.Y))
+    window.moveTo(((screen.width - document.documentElement.clientWidth) / 2)+args.X, ((screen.height - document.documentElement.clientHeight) / 2)-args.Y)
   }
   seto(){
     window.moveTo((screen.width - document.documentElement.clientWidth) / 2,(screen.height - document.documentElement.clientHeight) / 2)
   }
+  resizeby(a){
+    window.resizeBy(a.W, a.H)
+  }
+  resizeto(a){
+    window.resizeTo(a.W, a.H)
+  }
+  
 }
 Scratch.extensions.register(new archMoveWindow());
