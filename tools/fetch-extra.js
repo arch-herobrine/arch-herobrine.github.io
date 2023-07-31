@@ -32,4 +32,4 @@ class archExFetch {
   }
   
 }
-Scratch.extensions.register(new archMoveWindow());
+Scratch.extensions.register(new archExFetch());
