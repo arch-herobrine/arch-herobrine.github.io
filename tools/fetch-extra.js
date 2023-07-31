@@ -24,7 +24,7 @@ class archExFetch {
   }
   archFetch(args){
     Scratch.fetch(args.ONE,args.TWO)
-        .then(r => return {res:r.text(),status:r.status})
+        .then(r => {return {res:r.text(),status:r.status}})
         .catch(() => '');
   }
   
