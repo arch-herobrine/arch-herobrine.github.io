@@ -23,6 +23,7 @@ class archExFetch {
     }
   }
   archFetch(args){
+    console.log(args)
     Scratch.fetch(args.ONE,args.TWO)
         .then(r => {return {res:r.text(),status:r.status}})
         .catch(() => '');
