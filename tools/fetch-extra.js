@@ -22,7 +22,7 @@ class archExFetch {
       ]
     }
   }
-  archFetch(args){
+  async archFetch(args){
     try{
       const res = await Scratch.fetch(args.ONE,JSON.parse(args.TWO));
       return JSON.stringify({status:res.status,body:(await res.text())});
