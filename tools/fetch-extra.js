@@ -23,11 +23,15 @@ class archExFetch {
     }
   }
   async archFetch(args){
-    try{
-      const res = await Scratch.fetch(args.ONE,JSON.parse(args.TWO));
-      return JSON.stringify({status:res.status,body:(await res.text())});
-    }catch(e){
-      return e;
+    if(await Scratch.canFetch(args.ONE)){
+      try{
+        const res = await Scratch.fetch(args.ONE,JSON.parse(args.TWO));
+        return JSON.stringify({status:res.status,body:(await res.text())});
+      }catch(e){
+        return e;
+      }
+    }else{
+      return "cannot fetch"
     }
   }
   
