@@ -24,7 +24,7 @@ class archExFetch {
   }
   archfetch(args){
     console.log(args)
-    Scratch.fetch(args.ONE,args.TWO)
+    return Scratch.fetch(args.ONE,args.TWO)
         .then(r => {return {res:r.text(),status:r.status}})
         .catch(() => '');
   }
