@@ -22,17 +22,22 @@ class archExFetch {
       ]
     }
   }
-  archfetch(args){
-    console.log(args)
-    return Scratch.fetch(args.ONE,args.TWO)
-        .then(async r => {
-          const res = await r.text()
-          let returnval = {res:res,status:r.status};
-          console.log(returnval)
-          return JSON.stringify(returnval)
-        })
-        .catch(() => '');
+  async archfetch(args) {
+    if (await Scratch.canFetch(args.ONE)) {
+      try {
+        console.log(args)
+        const resp = await fetch(args.ONE, JSON.parse(args.TWO))
+        const text = await resp.text()
+        const json = { status: resp.status, res: text }
+        return JSON.stringify(json)
+      } catch (e) {
+        console.warn(e)
+        return e
+      }
+    } else {
+      return ""
+    }
   }
-  
+
 }
 Scratch.extensions.register(new archExFetch());
