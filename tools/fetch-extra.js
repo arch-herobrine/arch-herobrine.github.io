@@ -25,7 +25,12 @@ class archExFetch {
   archfetch(args){
     console.log(args)
     return Scratch.fetch(args.ONE,args.TWO)
-        .then(r => {return JSON.stringify({res:r.text().then((txt)=>{return txt}),status:r.status})})
+        .then(async r => {
+          const res = await r.text()
+          let returnval = {res:res,status:r.status};
+          console.log(returnval)
+          return JSON.stringify(returnval)
+        })
         .catch(() => '');
   }
   
