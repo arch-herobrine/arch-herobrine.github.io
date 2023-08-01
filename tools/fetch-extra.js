@@ -11,7 +11,7 @@ class archExFetch {
           arguments: {
             ONE: {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: "https://turbowarp.com"
+              defaultValue: "https://extensions.turbowarp.org/hello.txt"
             },
             TWO: {
               type: Scratch.ArgumentType.STRING,
