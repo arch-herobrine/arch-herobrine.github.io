@@ -22,11 +22,10 @@ class archExFetch {
       ]
     }
   }
-  async archfetch(args){
+  archfetch(args){
     console.log(args)
     return Scratch.fetch(args.ONE,args.TWO)
-        .then(r => r.text())
-        .then(txt => {return JSON.stringify({res:txt,status:r.status})})
+        .then(r => {return JSON.stringify({res:r.text().then((txt)=>{return txt}),status:r.status})})
         .catch(() => '');
   }
   
