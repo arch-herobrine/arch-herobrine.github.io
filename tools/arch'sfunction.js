@@ -3,16 +3,11 @@
      * @param {string} key cookieのキーの名前
      * @returns {string} cookieの値
      */
-    function getCookieValue(key) {
-        if (key !== "") {
-            var req = key
-        } else {
-            var req = "scratchcsrftoken"
-        }
+    function getCookieValue(key = "scratchcsrftoken") {
         const cookies = document.cookie.split(';');
         for (let cookie of cookies) {
             var cookiesArray = cookie.split('=');
-            if (cookiesArray[0].trim() == req.trim()) {
+            if (cookiesArray[0].trim() == key.trim()) {
                 return cookiesArray[1];
             }
         }
@@ -26,7 +21,7 @@
     async function getTargetUserName(projectid) {
         var str = "";
         var returnstr = "";
-        await fetch(`https://api.scratch.mit.edu/projects/${projectid}/`, {
+        const req = await fetch(`https://api.scratch.mit.edu/projects/${projectid}/`, {
             "headers": {
                 "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
                 "accept-language": "ja,en-US;q=0.9,en;q=0.8",
@@ -45,9 +40,8 @@
             "method": "GET",
             "mode": "cors",
             "credentials": "include"
-        }).then(function (response) {
-            str = response.json();
-            returnstr = str.author.username;
         });
+        const res = await req.json();
+        returnstr = res.author.username;
         return returnstr;
     }
