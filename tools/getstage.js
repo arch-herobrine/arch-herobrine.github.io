@@ -2,7 +2,7 @@
   if (!Scratch.extensions.unsandboxed) {
     throw new Error("This extension must run unsandboxed");
   }
-  
+
   class getStage {
     getInfo() {
       return {
@@ -24,4 +24,4 @@
     
   }
   Scratch.extensions.register(new getStage());
-})
+})(Scratch)
