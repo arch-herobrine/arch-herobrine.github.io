@@ -13,6 +13,7 @@ class archMoveWindow {
     }
   }
   getStageDataURL(args) {
+    console.log(Scratch);
     return Scratch.renderer.canvas.toDataURL();
   }
   
