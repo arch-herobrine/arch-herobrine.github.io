@@ -18,7 +18,7 @@ class getStage {
   }
   getStageDataURL(args) {
     Scratch.vm.runtime.renderer.draw();
-    return Scratch.renderer.canvas.toDataURL();
+    return Scratch.vm.runtime.renderer._gl.canvas.toDataURL();
   }
   
 }
