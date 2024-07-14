@@ -31,7 +31,7 @@
     const draw = renderer.draw;
   
     renderer.draw=function(){
-      
+      draw.call(this);
     }
   
     renderer._drawThese = function (drawables, drawMode, projection, opts) {
@@ -88,7 +88,7 @@
   
     const gu = DrawableProto.getUniforms;
     DrawableProto.getUniforms = function () {
-      if (active && toCorrectThing) {
+      if (active /*&& toCorrectThing*/) {
         setupModes(this.clipbox, this.id);
       }
       return gu.call(this);
