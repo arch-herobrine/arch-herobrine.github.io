@@ -109,11 +109,11 @@
         const proto = vm.runtime.targets[0].__proto__;
         const osa = proto.onStopAll;
         proto.onStopAll = function () {
-          this.clipbox = null;
+          this.clipbox = false;
           this.renderer.updateDrawableClipBox.call(
             renderer,
             this.drawableID,
-            null
+            false
           );
           osa.call(this);
         };
