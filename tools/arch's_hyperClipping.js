@@ -234,7 +234,7 @@
         name: SW,
         drawableID: spriteTarget.drawableID,
       }
-      target.runtime.requestRedraw();
+      runtime.requestRedraw();
       console.log(baseSprite);
     }
 
