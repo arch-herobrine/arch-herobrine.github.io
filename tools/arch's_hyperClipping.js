@@ -74,11 +74,9 @@
 
   function setupModes(clipbox, drawableID) {
     if (baseSprite?.drawableID == drawableID) {
-      console.log("base");
       gl.stencilFunc(gl.ALWAYS, 1, ~0);
       gl.stencilOp(gl.KEEP, gl.REPLACE, gl.REPLACE);
     } else if (drawableID == vm.runtime.getTargetForStage().drawableID) {
-      console.log("stage");
       gl.stencilFunc(gl.ALWAYS, 0, ~0);
       gl.stencilOp(gl.KEEP, gl.REPLACE, gl.REPLACE);
     } else if (clipbox) {
@@ -93,7 +91,6 @@
   const gu = DrawableProto.getUniforms;
   DrawableProto.getUniforms = function () {
     if (active && toCorrectThing) {
-      console.log(this.id);
       setupModes(this.clipbox, this.id);
     }
     return gu.call(this);
@@ -236,7 +233,6 @@
       }
       renderer.dirty = true;
       runtime.requestRedraw();
-      console.log(baseSprite);
     }
 
     getTarget() {
