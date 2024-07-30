@@ -73,22 +73,27 @@
   renderer.destroyDrawable(dr, "background");
 
   function setupModes(clipbox, drawableID) {
-    if (baseSprite?.DrawableID == drawableID) {
+    if (baseSprite?.drawableID == drawableID) {
+      console.log("base");
       gl.stencilFunc(gl.ALWAYS, 1, ~0);
       gl.stencilOp(gl.KEEP, gl.REPLACE, gl.REPLACE);
     } else if (drawableID == vm.runtime.getTargetForStage().drawableID) {
+      console.log("stage");
       gl.stencilFunc(gl.ALWAYS, 0, ~0);
       gl.stencilOp(gl.KEEP, gl.REPLACE, gl.REPLACE);
     } else if (clipbox) {
       gl.stencilFunc(gl.EQUAL, 1, ~0);
+      gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
     } else {
       gl.stencilFunc(gl.ALWAYS, 1, ~0);
+      gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
     }
   }
 
   const gu = DrawableProto.getUniforms;
   DrawableProto.getUniforms = function () {
-    if (active /*&& toCorrectThing*/) {
+    if (active && toCorrectThing) {
+      console.log(this.id);
       setupModes(this.clipbox, this.id);
     }
     return gu.call(this);
@@ -229,6 +234,7 @@
         name: SW,
         drawableID: spriteTarget.drawableID,
       }
+      console.log(baseSprite);
     }
 
     getTarget() {
