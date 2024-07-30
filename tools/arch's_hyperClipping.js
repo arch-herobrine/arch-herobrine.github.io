@@ -234,6 +234,7 @@
         name: SW,
         drawableID: spriteTarget.drawableID,
       }
+      renderer.dirty = true;
       runtime.requestRedraw();
       console.log(baseSprite);
     }
