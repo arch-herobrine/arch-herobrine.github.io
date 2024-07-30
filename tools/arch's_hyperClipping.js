@@ -72,14 +72,15 @@
   const DrawableProto = renderer._allDrawables[dr].__proto__;
   renderer.destroyDrawable(dr, "background");
 
-  function setupModes(clipbox, drawableID) {
-    if (baseSprite?.drawableID == drawableID) {
+  function setupModes(clippingMode, drawableID) {
+    if (runtime.getSpriteTargetByName(baseSprite?.name)?.drawableID == drawableID) {
       gl.stencilFunc(gl.ALWAYS, 1, ~0);
       gl.stencilOp(gl.KEEP, gl.REPLACE, gl.REPLACE);
+      console.log("a");
     } else if (drawableID == vm.runtime.getTargetForStage().drawableID) {
       gl.stencilFunc(gl.ALWAYS, 0, ~0);
       gl.stencilOp(gl.KEEP, gl.REPLACE, gl.REPLACE);
-    } else if (clipbox) {
+    } else if (clippingMode) {
       gl.stencilFunc(gl.EQUAL, 1, ~0);
       gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
     } else {
@@ -91,18 +92,18 @@
   const gu = DrawableProto.getUniforms;
   DrawableProto.getUniforms = function () {
     if (active && toCorrectThing) {
-      setupModes(this.clipbox, this.id);
+      setupModes(this.clippingMode, this.id);
     }
     return gu.call(this);
   };
-  DrawableProto.updateClipBox = function (clipbox) {
-    this.clipbox = clipbox;
+  DrawableProto.updateClippingMode = function (clippingMode) {
+    this.clippingMode = clippingMode;
   };
 
-  renderer.updateDrawableClipBox = function (drawableID, clipbox) {
+  renderer.updateDrawableClippingMode = function (drawableID, clippingMode) {
     const drawable = this._allDrawables[drawableID];
     if (!drawable) return;
-    drawable.updateClipBox(clipbox);
+    drawable.updateClippingMode(clippingMode);
   };
 
   const regTargetStuff = function (args) {
@@ -111,8 +112,8 @@
       const proto = vm.runtime.targets[0].__proto__;
       const osa = proto.onStopAll;
       proto.onStopAll = function () {
-        this.clipbox = null;
-        this.renderer.updateDrawableClipBox.call(
+        this.clippingMode = null;
+        this.renderer.updateDrawableClippingMode.call(
           renderer,
           this.drawableID,
           null
@@ -122,12 +123,12 @@
       const mc = proto.makeClone;
       proto.makeClone = function () {
         const newTarget = mc.call(this);
-        if (this.clipbox) {
-          newTarget.clipbox = this.clipbox;
-          renderer.updateDrawableClipBox.call(
+        if (this.clippingMode) {
+          newTarget.clippingMode = this.clippingMode;
+          renderer.updateDrawableClippingMode.call(
             renderer,
             newTarget.drawableID,
-            this.clipbox
+            this.clippingMode
           );
         }
         return newTarget;
@@ -205,12 +206,12 @@
 
     setMode({ SW }, { target }) {
       if (target.isStage) return;
-      const newClipbox = ((SW == "true" || SW == "ON") && baseSprite) ? true : false;
-      target.clipbox = newClipbox;
-      renderer.updateDrawableClipBox.call(
+      const newClippingMode = ((SW == "true" || SW == "ON") && baseSprite) ? true : false;
+      target.clippingMode = newClippingMode;
+      renderer.updateDrawableClippingMode.call(
         renderer,
         target.drawableID,
-        newClipbox
+        newClippingMode
       );
       if (target.visible) {
         renderer.dirty = true;
@@ -221,14 +222,14 @@
     }
 
     getMode(args, { target }) {
-      const clipbox = target.clipbox;
-      return clipbox;
+      const clippingMode = target.clippingMode;
+      return clippingMode;
     }
 
     setTarget({ SW }, util) {
       const spriteTarget = getSpriteTargetByName(util, SW);
       baseSprite = {
-        name: SW,
+        name: (SW).trim(),
         drawableID: spriteTarget.drawableID,
       }
       renderer.dirty = true;
